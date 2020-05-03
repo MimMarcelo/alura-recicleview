@@ -40,6 +40,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesHolder>
         return notes.size();
     }
 
+    public void add(Note note) {
+        notes.add(note);
+        notifyDataSetChanged();
+    }
+
     protected class NotesHolder extends RecyclerView.ViewHolder{
 
         private final TextView header;

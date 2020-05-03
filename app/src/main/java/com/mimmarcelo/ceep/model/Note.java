@@ -1,6 +1,8 @@
 package com.mimmarcelo.ceep.model;
 
-public class Note {
+import java.io.Serializable;
+
+public class Note implements Serializable {
     private final String header;
     private final String content;
 
