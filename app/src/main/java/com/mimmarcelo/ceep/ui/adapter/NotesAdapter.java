@@ -4,19 +4,21 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mimmarcelo.ceep.R;
 import com.mimmarcelo.ceep.model.Note;
+import com.mimmarcelo.ceep.ui.holder.NoteHolder;
+import com.mimmarcelo.ceep.ui.listener.OnItemClickListener;
 
 import java.util.List;
 
-public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesHolder> {
+public class NotesAdapter extends RecyclerView.Adapter<NoteHolder> {
     private final Context context;
     private final List<Note> notes;
+    private OnItemClickListener itemClickListener;
 
     public NotesAdapter(Context context, List<Note> notes) {
         this.context = context;
@@ -25,14 +27,14 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesHolder>
 
     @NonNull
     @Override
-    public NotesAdapter.NotesHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public NoteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.listitem_notes, parent, false);
-        return new NotesHolder(view);
+        return new NoteHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NotesAdapter.NotesHolder holder, int position) {
-        holder.bind(notes.get(position));
+    public void onBindViewHolder(@NonNull NoteHolder holder, int position) {
+        holder.bind(notes.get(position), itemClickListener);
     }
 
     @Override
@@ -45,20 +47,16 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesHolder>
         notifyDataSetChanged();
     }
 
-    protected class NotesHolder extends RecyclerView.ViewHolder{
+    public Note getItem(int position){
+        return notes.get(position);
+    }
 
-        private final TextView header;
-        private final TextView content;
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.itemClickListener = onItemClickListener;
+    }
 
-        public NotesHolder(@NonNull View itemView) {
-            super(itemView);
-            header = itemView.findViewById(R.id.txt_note_header);
-            content = itemView.findViewById(R.id.txt_note_content);
-        }
-
-        private void bind(Note note){
-            header.setText(note.getHeader());
-            content.setText(note.getContent());
-        }
+    public void update(int position, Note note) {
+        notes.set(position, note);
+        notifyDataSetChanged();
     }
 }
