@@ -13,9 +13,11 @@ import com.mimmarcelo.ceep.model.Note;
 import com.mimmarcelo.ceep.ui.holder.NoteHolder;
 import com.mimmarcelo.ceep.ui.listener.OnItemClickListener;
 
+import java.util.Collections;
 import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NoteHolder> {
+
     private final Context context;
     private final List<Note> notes;
     private OnItemClickListener itemClickListener;
@@ -57,6 +59,16 @@ public class NotesAdapter extends RecyclerView.Adapter<NoteHolder> {
 
     public void update(int position, Note note) {
         notes.set(position, note);
+        notifyDataSetChanged();
+    }
+
+    public void remove(int position) {
+        notes.remove(position);
+        notifyDataSetChanged();
+    }
+
+    public void swap(int startPosition, int endPosition) {
+        Collections.swap(notes, startPosition, endPosition);
         notifyDataSetChanged();
     }
 }

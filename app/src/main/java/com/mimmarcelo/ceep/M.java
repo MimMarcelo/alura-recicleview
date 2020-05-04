@@ -1,8 +1,11 @@
 package com.mimmarcelo.ceep;
 
 public interface M {
-    interface extra{
+    interface constant{
+        int invalid_position = -1;
+    }
 
+    interface extra{
         String note_obj = "note_obj";
         String position = "position";
     }

@@ -24,15 +24,22 @@ public class NoteFormActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_form);
 
-        edtHeader = findViewById(R.id.edt_note_header);
-        edtContent = findViewById(R.id.edt_note_content);
+        getViews();
         position = getIntent().getIntExtra(M.extra.position, -1);
 
         if(getIntent().hasExtra(M.extra.note_obj)){
-            Note note = (Note) getIntent().getSerializableExtra(M.extra.note_obj);
-            edtHeader.setText(note.getHeader());
-            edtContent.setText(note.getContent());
+            bindViews((Note) getIntent().getSerializableExtra(M.extra.note_obj));
         }
+    }
+
+    private void bindViews(Note note) {
+        edtHeader.setText(note.getHeader());
+        edtContent.setText(note.getContent());
+    }
+
+    private void getViews() {
+        edtHeader = findViewById(R.id.edt_note_header);
+        edtContent = findViewById(R.id.edt_note_content);
     }
 
     @Override
