@@ -23,11 +23,13 @@ public class NoteFormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_form);
+        setTitle(R.string.note_form_insert_header);
 
         getViews();
         position = getIntent().getIntExtra(M.extra.position, -1);
 
         if(getIntent().hasExtra(M.extra.note_obj)){
+            setTitle(R.string.note_form_update_header);
             bindViews((Note) getIntent().getSerializableExtra(M.extra.note_obj));
         }
     }

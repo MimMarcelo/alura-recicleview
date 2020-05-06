@@ -28,12 +28,13 @@ public class NotesListActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes_list);
+        setTitle(R.string.note_list_header);
 
         dao = new NotesDao();
-        dao.load(
-                new Note("Teste", "Testando..."),
-                new Note("Coração", "Mon Amour!")
-        );
+//        dao.load(
+//                new Note("Teste", "Testando..."),
+//                new Note("Coração", "Mon Amour!")
+//        );
         bindViews();
     }
 

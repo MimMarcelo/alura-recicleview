@@ -3,4 +3,7 @@
     <string name="tap_to_insert_a_new_note">Tap to insert a new note</string>
     <string name="hint_note_content">Note content</string>
     <string name="hint_note_header">Note header</string>
+    <string name="note_list_header">Notes</string>
+    <string name="note_form_insert_header">Insert Note</string>
+    <string name="note_form_update_header">Update Note</string>
 </resources>

@@ -64,11 +64,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NoteHolder> {
 
     public void remove(int position) {
         notes.remove(position);
-        notifyDataSetChanged();
+        notifyItemRemoved(position);
     }
 
-    public void swap(int startPosition, int endPosition) {
-        Collections.swap(notes, startPosition, endPosition);
-        notifyDataSetChanged();
+    public void swap(int fromPosition, int toPosition) {
+        Collections.swap(notes, fromPosition, toPosition);
+        notifyItemMoved(fromPosition, toPosition);
     }
 }
